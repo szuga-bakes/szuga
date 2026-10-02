@@ -486,6 +486,10 @@
       if (window.SZUGA_ONLY.indexOf(c.id) === -1) c.remove();
     });
   }
+    // cards marked data-only="test2" are hidden on test1
+  if (!window.SZUGA_ONLY) {
+    Array.prototype.slice.call(track.querySelectorAll('[data-only]')).forEach(function (c) { c.remove(); });
+  }
   if (window.SZUGA_BOX) {
     document.getElementById('boxName').textContent = window.SZUGA_BOX;
     document.title = "What's in your box · " + window.SZUGA_BOX + " · Szuga";
