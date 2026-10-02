@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu · Szuga</title>
+<meta name="description" content="Szuga's vegan cookie boxes, baked in South London and posted UK-wide by Royal Mail Tracked 24.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f2c3f;--pink:#f78fd3;--yellow:#f9db53;--cream:#fff7ea;--ink:#3d5766;--muted:#5c6b76;--hover:#c2418f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);font-family:Karla,system-ui,sans-serif;color:var(--ink)}
+  a{color:var(--navy)}
+  a:hover{color:var(--hover)}
+  img{display:block;max-width:100%}
+  mark{background:var(--yellow);color:var(--navy);font:700 11px 'Space Mono',monospace;padding:1px 5px;border-radius:4px}
+
+  /* marquee */
+  .marquee{background:var(--pink);overflow:hidden;padding:10px 0;border-bottom:3px solid var(--navy)}
+  .marquee-track{display:flex;gap:26px;white-space:nowrap;width:max-content;font:700 13px 'Space Mono',monospace;color:var(--navy);animation:szuga-marquee 30s linear infinite}
+  @keyframes szuga-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;max-width:1120px;margin:0 auto}
+  .topbar .home img{width:64px;height:64px;border-radius:50%;border:3px solid var(--navy);box-shadow:4px 4px 0 var(--yellow)}
+  .nav{display:flex;gap:10px;flex-wrap:wrap}
+  .pill{display:inline-block;border:2.5px solid var(--navy);border-radius:30px;padding:7px 18px;font:800 16px 'Baloo 2',sans-serif;color:var(--navy);text-decoration:none;background:#fff}
+  .pill.on{background:var(--yellow)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* hero */
+  .hero{text-align:center;padding:28px 0 18px;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .tag{background:var(--yellow);border:2.5px solid var(--navy);border-radius:30px;padding:7px 20px;font:700 12px 'Space Mono',monospace;color:var(--navy);transform:rotate(-2deg);letter-spacing:.06em}
+  h1{margin:0;font:800 clamp(40px,7vw,68px)/1 'Baloo 2',sans-serif;color:var(--navy)}
+  .lede{margin:0;max-width:46ch;font:400 18px/1.6 Karla,sans-serif;text-wrap:pretty}
+
+  .dispatch{display:flex;flex-wrap:wrap;justify-content:center;border:3px solid var(--navy);border-radius:20px;background:#fff;overflow:hidden;margin-top:6px}
+  .dispatch>div{padding:14px 24px;text-align:center}
+  .dispatch>div+div{border-left:3px solid var(--navy)}
+  .dispatch .k{font:700 11px 'Space Mono',monospace;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .dispatch .v{font:800 20px 'Baloo 2',sans-serif;color:var(--navy)}
+  @media (max-width:520px){.dispatch>div+div{border-left:0;border-top:3px solid var(--navy)}.dispatch{flex-direction:column;width:100%}}
+
+  section{padding:52px 0 8px}
+  h2{margin:0 0 6px;font:800 clamp(30px,4.5vw,40px)/1.05 'Baloo 2',sans-serif;color:var(--navy)}
+  .sub{margin:0 0 26px;font-size:16px;color:var(--muted)}
+
+  /* cookies */
+  .cookies{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media (max-width:800px){.cookies{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.cookies{grid-template-columns:1fr}}
+  .cookie.signature{background:var(--pink);box-shadow:8px 8px 0 var(--navy)}
+  .cookie.signature .badge{background:var(--yellow)}
+  .cookie.signature p,.cookie.signature .hint,.cookie.signature .contains{color:var(--navy)}
+  .cookie.signature .contains{border-top-color:rgba(15,44,63,.3)}
+  .cookie{background:#fff;border:3px solid var(--navy);border-radius:22px;padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px}
+  .cookie:nth-child(odd){transform:rotate(-.6deg)} .cookie:nth-child(even){transform:rotate(.6deg)}
+  .flip{all:unset;cursor:pointer;position:relative;aspect-ratio:1;display:block;border-radius:50%}
+  .flip:focus-visible{outline:3px dashed var(--hover);outline-offset:6px}
+  .flip img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .35s ease,transform .45s ease}
+  .flip .photo{opacity:0;transform:rotate(-8deg) scale(.96)}
+  .flip[aria-pressed="true"] .art{opacity:0;transform:rotate(8deg) scale(.96)}
+  .flip[aria-pressed="true"] .photo{opacity:1;transform:none}
+  .flip:hover .art{transform:rotate(-4deg)}
+  .hint{align-self:center;font:700 11px 'Space Mono',monospace;color:var(--muted);letter-spacing:.04em}
+  .cookie h3{margin:4px 0 0;font:800 24px/1.1 'Baloo 2',sans-serif;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .badge{font:700 10px 'Space Mono',monospace;background:var(--pink);border:2px solid var(--navy);border-radius:20px;padding:2px 9px;letter-spacing:.05em}
+  .cookie p{margin:0;font-size:15.5px;line-height:1.55}
+  .cookie .contains{font-size:13px;color:var(--muted);border-top:2px dashed #e6dccb;padding-top:10px;margin-top:auto}
+
+  /* boxes */
+  .boxes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  .box{border:3px solid var(--navy);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:14px;background:#fff}
+  .box.feature{background:var(--yellow);box-shadow:8px 8px 0 var(--navy)}
+  .box-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .box h3{margin:0;font:800 26px/1 'Baloo 2',sans-serif;color:var(--navy)}
+  .price{font:800 24px 'Baloo 2',sans-serif;color:var(--navy);white-space:nowrap}
+  .count{font:700 11px 'Space Mono',monospace;color:var(--navy);letter-spacing:.05em}
+  .minis{display:flex;flex-wrap:wrap}
+  .minis img{width:52px;height:52px;object-fit:contain;margin-right:-8px;filter:drop-shadow(1px 2px 0 rgba(15,44,63,.25))}
+  .box p{margin:0;font-size:15px;line-height:1.5}
+  .order{margin-top:auto;align-self:flex-start;background:var(--navy);color:var(--yellow);border-radius:30px;padding:11px 26px;font:800 17px 'Baloo 2',sans-serif;text-decoration:none}
+  .order:hover{color:var(--pink)}
+  .box.feature .order{background:var(--navy)}
+  .postage{margin:22px 0 0;font:700 13px 'Space Mono',monospace;color:var(--navy);text-align:center}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;counter-reset:s}
+  .step{background:var(--navy);color:#dbe6ee;border-radius:20px;padding:22px}
+  .step::before{counter-increment:s;content:counter(s);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--pink);color:var(--navy);font:800 18px 'Baloo 2',sans-serif;margin-bottom:12px}
+  .step h3{margin:0 0 6px;font:800 20px 'Baloo 2',sans-serif;color:var(--yellow)}
+  .step p{margin:0;font-size:15px;line-height:1.55}
+
+  .allergy{margin:34px 0 0;border:3px solid var(--navy);border-radius:20px;background:#fff;padding:22px 24px}
+  .allergy h3{margin:0 0 6px;font:800 20px 'Baloo 2',sans-serif;color:var(--navy)}
+  .allergy p{margin:0 0 8px;font-size:15.5px;line-height:1.6}
+  .allergy p:last-child{margin:0}
+
+  footer{margin-top:64px;background:var(--navy);padding:22px 24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+  footer .handle{font:700 15px 'Baloo 2',sans-serif;color:var(--pink)}
+  footer .info{font:400 12px 'Space Mono',monospace;color:#9fb3c0}
+  footer .info a{color:#9fb3c0}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>100% PLANT-BASED</span><span>★</span><span>POSTED UK-WIDE</span><span>★</span><span>TWO BAKES A MONTH</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>100% PLANT-BASED</span><span>★</span><span>POSTED UK-WIDE</span><span>★</span><span>TWO BAKES A MONTH</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>100% PLANT-BASED</span><span>★</span><span>POSTED UK-WIDE</span><span>★</span><span>TWO BAKES A MONTH</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>100% PLANT-BASED</span><span>★</span><span>POSTED UK-WIDE</span><span>★</span><span>TWO BAKES A MONTH</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+  </div>
+</div>
+
+<header class="topbar">
+  <a class="home" href="index.html" aria-label="Szuga home"><img src="uploads/SzugaLogo.png" alt="Szuga"></a>
+  <nav class="nav">
+    <a class="pill" href="index.html">Home</a>
+    <a class="pill on" href="menu.html" aria-current="page">Menu</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="tag">FRESH FROM THE OVEN</div>
+    <h1>The Menu</h1>
+    <p class="lede">Six big, messy, plant-based cookies, packed into boxes and posted straight to your door. I bake twice a month, so grab a box before they're gone.</p>
+    <!-- EDIT: update these two dates before each bake -->
+    <div class="dispatch">
+      <div><div class="k">Orders close</div><div class="v">Fri [date]</div></div>
+      <div><div class="k">Posted out</div><div class="v">Fri [date]</div></div>
+    </div>
+  </div>
+
+  <!-- ============ THE COOKIES ============ -->
+  <section id="cookies">
+    <h2>The cookies</h2>
+    <p class="sub">Tap a cookie to see the real thing.</p>
+
+    <!-- EDIT: every "Contains" line is a first guess from the descriptions.
+         Check each one against your recipes AND the labels of shop-bought
+         ingredients, then delete the [check] tags. -->
+    <div class="cookies">
+
+      <article class="cookie signature">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Midnight Blues">
+          <img class="art" src="images/cookies/midnight-blues.webp" alt="Illustration of the Midnight Blues cookie" loading="lazy">
+          <img class="photo" src="images/cookies/midnight-blues-photo.webp" alt="Photo of the Midnight Blues cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>Midnight Blues <span class="badge">SIGNATURE</span></h3>
+        <p>A black-and-white cookie with a jammy blueberry swirl, topped with vegan white chocolate and marshmallows.</p>
+        <p class="contains">Contains: wheat (gluten) <mark>[check]</mark></p>
+      </article>
+
+      <article class="cookie">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Black Velvet">
+          <img class="art" src="images/cookies/black-velvet.webp" alt="Illustration of the Black Velvet cookie" loading="lazy">
+          <img class="photo" src="images/cookies/black-velvet-photo.webp" alt="Photo of the Black Velvet cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>Black Velvet</h3>
+        <p>A black tahini cookie with dark chocolate chips, topped with velvety vegan cheesecake chunks and studded with pomegranate.</p>
+        <p class="contains">Contains: wheat (gluten), sesame <mark>[check]</mark></p>
+      </article>
+
+      <article class="cookie">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Morning Roast">
+          <img class="art" src="images/cookies/morning-roast.webp" alt="Illustration of the Morning Roast cookie" loading="lazy">
+          <img class="photo" src="images/cookies/morning-roast-photo.webp" alt="Photo of the Morning Roast cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>Morning Roast</h3>
+        <p>A crispy oat and apple cookie with salted almonds, dried apricots and a sticky espresso glaze made with homemade apple honey.</p>
+        <p class="contains">Contains: wheat, oats (gluten), almonds <mark>[check]</mark></p>
+      </article>
+
+      <article class="cookie signature">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of GBF">
+          <img class="art" src="images/cookies/gbf.webp" alt="Illustration of the GBF cookie" loading="lazy">
+          <img class="photo" src="images/cookies/gbf-photo.webp" alt="Photo of the GBF cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>GBF <span class="badge">SIGNATURE</span></h3>
+        <p>A vegan brown butter cookie with vegan milk and dark chocolate chunks and a crunchy malted crumb.</p>
+        <p class="contains">Contains: wheat, barley (gluten) <mark>[check]</mark></p>
+      </article>
+
+      <article class="cookie">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Golden Hour">
+          <img class="art" src="images/cookies/golden-hour.webp" alt="Illustration of the Golden Hour cookie" loading="lazy">
+          <img class="photo" src="images/cookies/golden-hour-photo.webp" alt="Photo of the Golden Hour cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>Golden Hour</h3>
+        <p>A vegan milk chocolate and pecan cookie, stuffed with gooey banana, swirled with banana-miso caramel and topped with caramelised pecans.</p>
+        <p class="contains">Contains: wheat (gluten), pecans, soya <mark>[check]</mark></p>
+      </article>
+
+      <article class="cookie">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Lavender Sunset">
+          <img class="art" src="images/cookies/lavender-sunset.webp" alt="Illustration of the Lavender Sunset cookie" loading="lazy">
+          <img class="photo" src="images/cookies/lavender-sunset-photo.webp" alt="Photo of the Lavender Sunset cookie" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+        <h3>Lavender Sunset</h3>
+        <p>Peachy cookie dough with a jammy strawberry swirl and lavender sugar clouds.</p>
+        <p class="contains">Contains: wheat (gluten) <mark>[check]</mark></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ THE BOXES ============ -->
+  <section id="boxes">
+    <h2>The boxes</h2>
+    <p class="sub">Every cookie is individually sealed and packed in a padded box.</p>
+
+    <!-- EDIT: replace each href="#" with your Square product link -->
+    <div class="boxes">
+
+      <article class="box feature">
+        <div class="box-head"><h3>24/7 Cookies</h3><span class="price">£19.75</span></div>
+        <span class="count">6 COOKIES · ONE OF EVERYTHING</span>
+        <div class="minis" aria-hidden="true">
+          <img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/black-velvet.webp" alt=""><img src="images/cookies/morning-roast.webp" alt=""><img src="images/cookies/golden-hour.webp" alt=""><img src="images/cookies/lavender-sunset.webp" alt="">
+        </div>
+        <p>The whole menu in one box: Midnight Blues, GBF, Black Velvet, Morning Roast, Golden Hour and Lavender Sunset.</p>
+        <a class="order" href="#">Order</a>
+      </article>
+
+      <article class="box">
+        <div class="box-head"><h3>AM</h3><span class="price">£15.75</span></div>
+        <span class="count">4 COOKIES</span>
+        <div class="minis" aria-hidden="true">
+          <img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/black-velvet.webp" alt=""><img src="images/cookies/morning-roast.webp" alt="">
+        </div>
+        <p>Both signatures, Midnight Blues and GBF, plus Black Velvet and Morning Roast.</p>
+        <a class="order" href="#">Order</a>
+      </article>
+
+      <article class="box">
+        <div class="box-head"><h3>PM</h3><span class="price">£15.75</span></div>
+        <span class="count">4 COOKIES</span>
+        <div class="minis" aria-hidden="true">
+          <img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/golden-hour.webp" alt=""><img src="images/cookies/lavender-sunset.webp" alt="">
+        </div>
+        <p>Both signatures, Midnight Blues and GBF, plus Golden Hour and Lavender Sunset.</p>
+        <a class="order" href="#">Order</a>
+      </article>
+
+      <article class="box">
+        <div class="box-head"><h3>Midnight Feast</h3><span class="price">£18.75</span></div>
+        <span class="count">6 COOKIES</span>
+        <div class="minis" aria-hidden="true">
+          <img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/midnight-blues.webp" alt=""><img src="images/cookies/midnight-blues.webp" alt="">
+        </div>
+        <p>Six Midnight Blues. No sharing required.</p>
+        <a class="order" href="#">Order</a>
+      </article>
+
+      <article class="box">
+        <div class="box-head"><h3>Luncz Box</h3><span class="price">£16.75</span></div>
+        <span class="count">6 COOKIES</span>
+        <div class="minis" aria-hidden="true">
+          <img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/gbf.webp" alt=""><img src="images/cookies/gbf.webp" alt="">
+        </div>
+        <p>Six GBFs. The one to keep in your desk drawer.</p>
+        <a class="order" href="#">Order</a>
+      </article>
+
+    </div>
+    <p class="postage">+ £4.95 POSTAGE PER ORDER · ROYAL MAIL TRACKED 24</p>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="sub">Small batches, baked to order.</p>
+    <div class="steps">
+      <div class="step"><h3>Order</h3><p>Orders close on the Friday before each bake, so I know exactly how much to make.</p></div>
+      <div class="step"><h3>Bake</h3><p>Dough is made on Tuesday, and your cookies are baked fresh on Thursday evening.</p></div>
+      <div class="step"><h3>Post</h3><p>Sealed, boxed and posted on Friday morning by Royal Mail Tracked 24, with tracking sent to you.</p></div>
+    </div>
+
+    <!-- EDIT: add your "best eaten within" time once your shelf-life test is done -->
+    <div class="allergy">
+      <h3>Allergens</h3>
+      <p>Every Szuga bake is 100% plant-based. My kitchen also handles gluten, nuts, sesame and soya, so I can't guarantee any cookie is free from them.</p>
+      <p>A card in every box lists the allergens for each cookie. If you have any questions before ordering, email me at <a href="mailto:alice@szuga.co.uk">alice@szuga.co.uk</a>.</p>
+      <p>Best eaten within <mark>[X days]</mark> of arriving.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="handle">@szuga.bakes</span>
+  <span class="info">alice@szuga.co.uk · London · <a href="privacy.html">Privacy</a></span>
+</footer>
+
+<script>
+  document.querySelectorAll('.flip').forEach(function (btn) {
+    var name = btn.getAttribute('aria-label').replace('Show photo of ', '');
+    var hint = btn.nextElementSibling;
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', (on ? 'Show illustration of ' : 'Show photo of ') + name);
+      hint.textContent = on ? 'TAP FOR THE DRAWING' : 'TAP FOR THE REAL THING';
+    });
+  });
+</script>
+</body>
+</html>
