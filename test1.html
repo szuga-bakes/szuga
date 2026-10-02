@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's in your box · Szuga</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f2c3f;--pink:#f78fd3;--yellow:#f9db53;--cream:#fff7ea;--ink:#3d5766;--muted:#5c6b76}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--cream);font-family:Karla,system-ui,sans-serif;color:var(--ink)}
+  img{display:block;max-width:100%}
+  a{color:var(--navy)}
+
+  .app{height:100%;height:100dvh;display:flex;flex-direction:column;max-width:520px;margin:0 auto;background:var(--cream)}
+  @media (min-width:560px){body{background:#efe6d6}.app{border-left:3px solid var(--navy);border-right:3px solid var(--navy)}}
+
+  /* top bar */
+  .top{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:3px solid var(--navy);background:var(--pink)}
+  .top img{width:44px;height:44px;border-radius:50%;border:2.5px solid var(--navy)}
+  .top .box{flex:1;font:800 18px/1.1 'Baloo 2',sans-serif;color:var(--navy)}
+  .top .box small{display:block;font:700 10px 'Space Mono',monospace;letter-spacing:.06em}
+  .count{font:700 13px 'Space Mono',monospace;color:var(--navy);background:#fff;border:2px solid var(--navy);border-radius:20px;padding:4px 10px}
+
+  /* swipe track */
+  .track{flex:1;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+  .track::-webkit-scrollbar{display:none}
+  .card{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .card-inner{padding:20px 18px 40px;display:flex;flex-direction:column;gap:14px}
+  .card.signature{background:#fde3f3}
+
+  /* cookie image (tap to flip) */
+  .flip{all:unset;cursor:pointer;position:relative;width:min(78%,320px);aspect-ratio:1;align-self:center;border-radius:50%}
+  .flip:focus-visible{outline:3px dashed var(--navy);outline-offset:6px}
+  .flip img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .35s,transform .45s}
+  .flip .photo{opacity:0;transform:rotate(-8deg) scale(.96)}
+  .flip[aria-pressed="true"] .art{opacity:0;transform:rotate(8deg) scale(.96)}
+  .flip[aria-pressed="true"] .photo{opacity:1;transform:none}
+  .hint{align-self:center;font:700 10px 'Space Mono',monospace;color:var(--muted);letter-spacing:.05em;margin-top:-4px}
+
+  h1,h2{margin:0;font:800 30px/1.05 'Baloo 2',sans-serif;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .badge{font:700 10px 'Space Mono',monospace;background:var(--yellow);border:2px solid var(--navy);border-radius:20px;padding:2px 9px;letter-spacing:.05em}
+  .desc{margin:0;font-size:17px;line-height:1.55;color:var(--navy)}
+
+  .block{background:#fff;border:3px solid var(--navy);border-radius:18px;padding:16px 16px 18px}
+  .block h3{margin:0 0 10px;font:800 19px 'Baloo 2',sans-serif;color:var(--navy)}
+  .block p{margin:0 0 8px;font-size:15.5px;line-height:1.6}
+  .block p:last-child{margin-bottom:0}
+  .small{font-size:14px !important}
+
+  /* star bullets */
+  .stars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .stars li{position:relative;padding-left:28px;font-size:15.5px;line-height:1.45;color:var(--navy)}
+  .stars li::before{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;background:var(--yellow);
+    clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+  .stars li::after{content:"";position:absolute;left:0;top:1px;width:19px;height:19px;background:var(--navy);z-index:-1;transform:translate(1.5px,1.5px);
+    clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+  .stars{position:relative;z-index:0}
+
+  .howto{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:8px 12px}
+  .howto dt{font:700 11px 'Space Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);padding-top:3px}
+  .howto dd{margin:0;font-size:15px;line-height:1.5}
+  .recommends{background:var(--pink);border:2.5px solid var(--navy);border-radius:14px;padding:12px 14px;transform:rotate(-.8deg)}
+  .rec-label{display:block;font:700 11px 'Space Mono',monospace;letter-spacing:.06em;color:var(--navy);margin-bottom:4px}
+  .recommends p{color:var(--navy)}
+  .notes{background:var(--cream)}
+
+  /* notes card */
+  .hello .card-inner{padding-top:28px}
+  .hello .tag{align-self:flex-start;background:var(--yellow);border:2.5px solid var(--navy);border-radius:30px;padding:6px 16px;font:700 11px 'Space Mono',monospace;color:var(--navy);transform:rotate(-2deg);letter-spacing:.06em}
+  .hello h1{font-size:36px}
+  .hello .letter p{font-size:16.5px}
+  .signoff{font:800 22px 'Baloo 2',sans-serif;color:var(--navy);margin-top:4px}
+  .swipe-cta{align-self:center;margin-top:6px;font:700 12px 'Space Mono',monospace;color:var(--navy);animation:nudge 1.6s ease-in-out infinite}
+  @keyframes nudge{50%{transform:translateX(8px)}}
+  @media (prefers-reduced-motion:reduce){.swipe-cta{animation:none}.flip img{transition:none}}
+
+  /* bottom nav */
+  .bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-top:3px solid var(--navy);background:#fff}
+  .arrow{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;background:var(--navy);color:var(--yellow);display:flex;align-items:center;justify-content:center;font:800 20px 'Baloo 2',sans-serif}
+  .arrow[disabled]{opacity:.25;cursor:default}
+  .dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+  .dot{all:unset;cursor:pointer;width:10px;height:10px;border-radius:50%;border:2px solid var(--navy);background:#fff}
+  .dot[aria-current="true"]{background:var(--pink);transform:scale(1.25)}
+
+  /* placeholders: easy to spot, delete when filled */
+  .fill{background:var(--yellow);color:var(--navy);font:700 12px/1.6 'Space Mono',monospace;padding:1px 6px;border-radius:4px;border:1.5px dashed var(--navy)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <img src="uploads/SzugaLogo.png" alt="Szuga">
+    <div class="box"><small>TEST BOX</small><span id="boxName">24/7 Cookies</span></div>
+    <span class="count" id="count">1 / 7</span>
+  </header>
+
+  <main class="track" id="track">
+
+    <!-- ================= HELLO / NOTES CARD (shared by test1 and test2) ================= -->
+    <section class="card hello" id="hello" aria-label="Hello">
+      <div class="card-inner">
+        <span class="tag">A NOTE FROM ALICE</span>
+        <h1>Hello, my little guinea pigs</h1>
+        <div class="block letter">
+          <!-- FILL-ME: your note about these being test batches / prototypes. Add more <p>...</p> paragraphs as needed -->
+          <p><span class="fill">FILL-ME: your note to testers</span></p>
+          <p class="signoff">Alice x</p>
+        </div>
+        <span class="swipe-cta">SWIPE TO MEET THE COOKIES →</span>
+      </div>
+    </section>
+
+    <!-- ================= MIDNIGHT BLUES ================= -->
+    <section class="card signature" id="midnight-blues" aria-label="Midnight Blues">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Midnight Blues">
+          <img class="art" src="images/cookies/midnight-blues.webp" alt="Illustration of Midnight Blues">
+          <img class="photo" src="images/cookies/midnight-blues-photo.webp" alt="Photo of Midnight Blues" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>Midnight Blues <span class="badge">SIGNATURE</span></h2>
+        <p class="desc">A black-and-white cookie with a jammy blueberry swirl, topped with vegan white chocolate and marshmallows.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Black-and-white cookie dough</li>
+            <li>Jammy blueberry swirl</li>
+            <li>Vegan white chocolate</li>
+            <li>Marshmallows</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BLACK VELVET ================= -->
+    <section class="card" id="black-velvet" aria-label="Black Velvet">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Black Velvet">
+          <img class="art" src="images/cookies/black-velvet.webp" alt="Illustration of Black Velvet">
+          <img class="photo" src="images/cookies/black-velvet-photo.webp" alt="Photo of Black Velvet" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>Black Velvet</h2>
+        <p class="desc">A black tahini cookie with dark chocolate chips, topped with velvety vegan cheesecake chunks and studded with pomegranate.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Black tahini cookie dough</li>
+            <li>Dark chocolate chips</li>
+            <li>Velvety vegan cheesecake chunks</li>
+            <li>Pomegranate seeds and jam</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MORNING ROAST ================= -->
+    <section class="card" id="morning-roast" aria-label="Morning Roast">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Morning Roast">
+          <img class="art" src="images/cookies/morning-roast.webp" alt="Illustration of Morning Roast">
+          <img class="photo" src="images/cookies/morning-roast-photo.webp" alt="Photo of Morning Roast" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>Morning Roast</h2>
+        <p class="desc">A crispy oat and apple cookie with salted almonds, dried apricots and a sticky espresso glaze made with homemade apple honey.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Crispy oat and apple cookie dough</li>
+            <li>Salted almonds</li>
+            <li>Dried apricots</li>
+            <li>Sticky espresso and apple-honey glaze</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GBF ================= -->
+    <section class="card signature" id="gbf" aria-label="GBF">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of GBF">
+          <img class="art" src="images/cookies/gbf.webp" alt="Illustration of GBF">
+          <img class="photo" src="images/cookies/gbf-photo.webp" alt="Photo of GBF" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>GBF <span class="badge">SIGNATURE</span></h2>
+        <p class="desc">A vegan brown butter cookie with vegan milk and dark chocolate chunks and a crunchy malted crumb.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Vegan brown butter cookie dough</li>
+            <li>Vegan milk and dark chocolate chunks</li>
+            <li>Crunchy malted crumb</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GOLDEN HOUR ================= -->
+    <section class="card" id="golden-hour" aria-label="Golden Hour">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Golden Hour">
+          <img class="art" src="images/cookies/golden-hour.webp" alt="Illustration of Golden Hour">
+          <img class="photo" src="images/cookies/golden-hour-photo.webp" alt="Photo of Golden Hour" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>Golden Hour</h2>
+        <p class="desc">A vegan milk chocolate and pecan cookie, stuffed with gooey banana, swirled with banana-miso caramel and topped with caramelised pecans.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Vegan milk chocolate and pecan cookie dough</li>
+            <li>Gooey banana filling</li>
+            <li>Banana-miso caramel swirl</li>
+            <li>Caramelised pecans</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LAVENDER SUNSET ================= -->
+    <section class="card" id="lavender-sunset" aria-label="Lavender Sunset">
+      <div class="card-inner">
+        <button class="flip" aria-pressed="false" aria-label="Show photo of Lavender Sunset">
+          <img class="art" src="images/cookies/lavender-sunset.webp" alt="Illustration of Lavender Sunset">
+          <img class="photo" src="images/cookies/lavender-sunset-photo.webp" alt="Photo of Lavender Sunset" loading="lazy">
+        </button>
+        <span class="hint">TAP FOR THE REAL THING</span>
+
+        <h2>Lavender Sunset</h2>
+        <p class="desc">Peachy cookie dough with a jammy strawberry swirl and lavender sugar clouds.</p>
+
+        <div class="block">
+          <h3>What's inside</h3>
+          <!-- These come from your menu descriptions. Edit, add or remove <li> lines freely. -->
+          <ul class="stars">
+            <li>Peachy cookie dough</li>
+            <li>Jammy strawberry swirl</li>
+            <li>Lavender sugar clouds</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>How to enjoy</h3>
+          <dl class="howto">
+            <dt>Storage</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to store it</span></dd>
+            <dt>Freezing</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: can it be frozen, and for how long</span></dd>
+            <dt>Reheating</dt>
+            <dd><!-- FILL-ME --><span class="fill">FILL-ME: how to warm it up</span></dd>
+          </dl>
+          <div class="recommends">
+            <span class="rec-label">ALICE RECOMMENDS…</span>
+            <p><!-- FILL-ME --><span class="fill">FILL-ME: how it's best enjoyed</span></p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ingredients</h3>
+          <!-- FILL-ME: replace TBD with the full ingredients list -->
+          <p class="small">TBD</p>
+          <!-- FILL-ME: allergens. Important: this card is part of how allergen info reaches customers -->
+          <p class="small"><strong>Allergens:</strong> <span class="fill">FILL-ME: e.g. wheat (gluten), sesame</span></p>
+        </div>
+
+        <div class="block notes">
+          <h3>Alice's notes</h3>
+          <!-- FILL-ME: your story behind this cookie. Add more <p>...</p> paragraphs if you need them -->
+          <p><span class="fill">FILL-ME: how you came up with this cookie and what it means to you</span></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom" aria-label="Cards">
+    <button class="arrow" id="prev" aria-label="Previous card">←</button>
+    <div class="dots" id="dots"></div>
+    <button class="arrow" id="next" aria-label="Next card">→</button>
+  </nav>
+</div>
+
+<script>
+(function () {
+  var track = document.getElementById('track');
+
+  // test2.html sets these before loading this page, to show only some cards
+  if (window.SZUGA_ONLY) {
+    Array.prototype.slice.call(track.querySelectorAll('.card')).forEach(function (c) {
+      if (window.SZUGA_ONLY.indexOf(c.id) === -1) c.remove();
+    });
+  }
+  if (window.SZUGA_BOX) {
+    document.getElementById('boxName').textContent = window.SZUGA_BOX;
+    document.title = "What's in your box · " + window.SZUGA_BOX + " · Szuga";
+  }
+
+  var cards = Array.prototype.slice.call(track.querySelectorAll('.card'));
+  var dots = document.getElementById('dots'), count = document.getElementById('count');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var current = 0;
+
+  cards.forEach(function (c, i) {
+    var d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', 'Go to ' + c.getAttribute('aria-label'));
+    d.addEventListener('click', function () { go(i); });
+    dots.appendChild(d);
+  });
+
+  function go(i) {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    current = i;
+    track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+  }
+  function update() {
+    var i = Math.round(track.scrollLeft / track.clientWidth);
+    current = i;
+    Array.prototype.forEach.call(dots.children, function (d, j) { d.setAttribute('aria-current', j === i); });
+    count.textContent = (i + 1) + ' / ' + cards.length;
+    prev.disabled = i === 0;
+    next.disabled = i === cards.length - 1;
+  }
+  prev.addEventListener('click', function () { go(current - 1); });
+  next.addEventListener('click', function () { go(current + 1); });
+  track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', function () { track.scrollLeft = current * track.clientWidth; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') go(current + 1);
+    if (e.key === 'ArrowLeft') go(current - 1);
+  });
+  update();
+
+  // tap a cookie to swap drawing <-> photo
+  document.querySelectorAll('.flip').forEach(function (btn) {
+    var name = btn.getAttribute('aria-label').replace('Show photo of ', '');
+    var hint = btn.nextElementSibling;
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', (on ? 'Show illustration of ' : 'Show photo of ') + name);
+      hint.textContent = on ? 'TAP FOR THE DRAWING' : 'TAP FOR THE REAL THING';
+    });
+  });
+})();
+</script>
+</body>
+</html>

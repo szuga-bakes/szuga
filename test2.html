@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's in your box · Szuga</title>
+<meta name="robots" content="noindex">
+</head>
+<body style="margin:0;background:#fff7ea;font-family:system-ui,sans-serif;color:#0f2c3f">
+<p id="loading" style="text-align:center;margin-top:40vh">Loading your box…</p>
+<script>
+  /*
+    This page has no content of its own. It borrows cards from test1.html,
+    so you only ever fill in each cookie once (in test1.html).
+
+    To change which cards appear here, edit the list below.
+    Card names: hello, midnight-blues, black-velvet, morning-roast, gbf, golden-hour, lavender-sunset
+  */
+  window.SZUGA_ONLY = ['hello', 'midnight-blues', 'gbf'];
+  window.SZUGA_BOX  = 'Signature Bakes';
+
+  fetch('test1.html', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (html) { document.open(); document.write(html); document.close(); })
+    .catch(function () {
+      document.getElementById('loading').innerHTML =
+        'Sorry, this page didn\'t load. Please try again, or email <a href="mailto:alice@szuga.co.uk">alice@szuga.co.uk</a>.';
+    });
+</script>
+</body>
+</html>
