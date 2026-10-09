@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ingredients · Szuga</title>
+<meta name="description" content="Full ingredients and allergen information for every Szuga cookie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f2c3f;--pink:#f78fd3;--yellow:#f9db53;--cream:#fff7ea;--ink:#3d5766;--muted:#5c6b76;--hover:#c2418f}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--cream);font-family:Karla,system-ui,sans-serif;color:var(--ink)}
+  a{color:var(--navy)}
+  a:hover{color:var(--hover)}
+  img{display:block;max-width:100%}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;max-width:1120px;margin:0 auto}
+  .topbar .home img{width:64px;height:64px;border-radius:50%;border:3px solid var(--navy);box-shadow:4px 4px 0 var(--yellow)}
+  .nav{display:flex;gap:10px;flex-wrap:wrap}
+  .pill{display:inline-block;border:2.5px solid var(--navy);border-radius:30px;padding:7px 18px;font:800 16px 'Baloo 2',sans-serif;color:var(--navy);text-decoration:none;background:#fff}
+
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+
+  .hero{text-align:center;padding:20px 0 10px;display:flex;flex-direction:column;align-items:center;gap:16px}
+  h1{margin:0;font:800 clamp(38px,6.5vw,60px)/1 'Baloo 2',sans-serif;color:var(--navy)}
+  .lede{margin:0;max-width:52ch;font:400 17px/1.6 Karla,sans-serif;text-wrap:pretty}
+
+  .jump{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:8px 0 0}
+  .jump a{border:2px solid var(--navy);border-radius:30px;padding:4px 14px;font:700 12px 'Space Mono',monospace;color:var(--navy);text-decoration:none;background:#fff}
+  .jump a:hover{background:var(--yellow);color:var(--navy)}
+
+  .note{margin:28px 0 0;border:3px solid var(--navy);border-radius:20px;background:#fff;padding:18px 22px;font-size:15px;line-height:1.6}
+  .note p{margin:0 0 6px}
+  .note p:last-child{margin:0}
+
+  .item{display:grid;grid-template-columns:180px 1fr;gap:26px;align-items:start;background:#fff;border:3px solid var(--navy);border-radius:22px;padding:22px;margin:28px 0 0;scroll-margin-top:20px}
+  @media (max-width:600px){.item{grid-template-columns:1fr}.item img{width:180px;margin:0 auto}}
+  .item img{width:100%;aspect-ratio:1;object-fit:contain}
+  .item h2{margin:0 0 8px;font:800 30px/1.05 'Baloo 2',sans-serif;color:var(--navy)}
+  .contains{display:inline-block;margin:0 0 14px;background:var(--yellow);border:2px solid var(--navy);border-radius:20px;padding:4px 12px;font:700 12px 'Space Mono',monospace;color:var(--navy)}
+  .ing{margin:0;font-size:14.5px;line-height:1.65}
+  .ing strong{color:var(--navy);font-weight:700}
+  .back{display:inline-block;margin-top:14px;font:700 12px 'Space Mono',monospace}
+
+  footer{margin-top:64px;background:var(--navy);padding:22px 24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+  footer .handle{font:700 15px 'Baloo 2',sans-serif;color:var(--pink)}
+  footer .info{font:400 12px 'Space Mono',monospace;color:#9fb3c0}
+  footer .info a{color:#9fb3c0}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="home" href="index.html" aria-label="Szuga home"><img src="uploads/SzugaLogo.png" alt="Szuga"></a>
+  <nav class="nav">
+    <a class="pill" href="index.html">Home</a>
+    <a class="pill" href="menu.html">Menu</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="hero" id="top">
+    <h1>Ingredients</h1>
+    <p class="lede">Full ingredients for every cookie on the menu. Allergens are shown in <strong>bold</strong>.</p>
+    <nav class="jump" aria-label="Jump to a cookie">
+      <a href="#midnight-blues">Midnight Blues</a>
+      <a href="#black-velvet">Black Velvet</a>
+      <a href="#morning-roast">Morning Roast</a>
+      <a href="#gbf">GBF</a>
+      <a href="#golden-hour">Golden Hour</a>
+      <a href="#lavender-sunset">Lavender Sunset</a>
+    </nav>
+  </div>
+
+  <div class="note">
+    <p>Every Szuga bake is 100% plant-based. My kitchen also handles gluten, nuts, sesame and soya, so I can't guarantee any cookie is free from them.</p>
+    <p>Questions about ingredients? Email me at <a href="mailto:alice@szuga.co.uk">alice@szuga.co.uk</a>.</p>
+  </div>
+
+  <!-- ============ MIDNIGHT BLUES ============ -->
+  <article class="item" id="midnight-blues">
+    <img src="images/cookies/midnight-blues-photo.webp" alt="Midnight Blues cookie" loading="lazy">
+    <div>
+      <h2>Midnight Blues</h2>
+      <p class="contains">Contains: wheat, soya</p>
+      <p class="ing"><strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), Sugar, Margarine [Vegetable Oils (Rapeseed, Palm, Sunflower), Water, Salt, Emulsifiers (Lecithin, Mono and Diglycerides of Fatty Acids), Acid (Lactic Acid), Colours (Beta-Carotene), Vitamin A and D, Flavourings], Blueberry Jam (100% Blueberries), Bramley Apple Sauce (Bramley Apple (70%), Sugar, Water, Gelling Agents: Pectins; Antioxidant: Ascorbic Acid; Preservative: Potassium Sorbate; Acidity Regulator: Citric Acid), Moo Free White Chocolate [Sugar, Cocoa Butter, Shea Oil, Rice Flour, Natural Flavouring, Emulsifier (Sunflower Lecithin)], Vegan Butter [Plant Oils (Sunflower, Rapeseed), Coconut Oil, Water, Sea Salt, Faba Bean Preparation, Emulsifier (Sunflower Lecithin), Natural Flavouring, Colour (Carotenes)], Mini Marshmallows (Tapioca Syrup, Cane Sugar, Water, Tapioca Starch, Gelling Agent: Carrageenan, <strong>Soy</strong> Protein, Natural Vanilla Flavouring), Brown Sugar, Yoghurt [Water, Hulled <strong>Soya</strong> Beans (15.7%), Sugar, Stabiliser (Pectins), Calcium (Tri-calcium Citrate), Acidity Regulators (Sodium Citrates, Citric Acid), Sea Salt, Natural Flavouring, Antioxidants (Tocopherol-rich Extract, Fatty Acid Esters of Ascorbic Acid), Vitamins B6, B12, D2, Live Cultures (S. thermophilus, L. bulgaricus)], Cocoa Powder (Cocoa Powder, Acidity Regulators: Potassium Carbonates, Potassium Hydroxide), Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Raising Agent (Sodium Hydrogen Carbonate), Gold Stars (Sugar Powder, Water, High Oleic Sunflower Oil, Rice Flour, Potato Starch, E904, E172, E555, Natural Vanilla Flavouring), Salt, Gold Lustre Dust (Colour Carrier: E555 Potassium Aluminium Silicate; Colour: E172 Iron Oxides and Iron Hydroxides; Anticaking Agent: E551 Silicon Dioxide), White Lustre Dust (Colour Carrier: E555 Potassium Aluminium Silicate; Colour: E171).</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <!-- ============ BLACK VELVET ============ -->
+  <article class="item" id="black-velvet">
+    <img src="images/cookies/black-velvet-photo.webp" alt="Black Velvet cookie" loading="lazy">
+    <div>
+      <h2>Black Velvet</h2>
+      <p class="contains">Contains: wheat, sesame, soya</p>
+      <p class="ing"><strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), Margarine [Vegetable Oils (Rapeseed, Palm, Sunflower), Water, Salt, Emulsifiers (Lecithin, Mono and Diglycerides of Fatty Acids), Acid (Lactic Acid), Colours (Beta-Carotene), Vitamin A and D, Flavourings], Cheesecake Chunks [Vegan Cream Cheese (Water, Coconut Oil (24%), Starch, Modified Starch, Sea Salt, Acidity Regulator: Glucono-Delta-Lactone, Flavourings, Olive Extract, Vitamin B12), Icing Sugar, Cornflour, Vanilla Bean Paste (Sugar, Water, Vanilla Extract (Water, Ethanol, Sugar, Vanilla Bean Extractives), Vanilla Bean Seeds, Thickener (Tragacanth)), Dark Chocolate (Sugar, Cocoa Mass, Cocoa Butter, <strong>Soya</strong> Lecithin)], Sugar, Pomegranate Jam (Pomegranate Juice, Sugar, Citric Acid, Pectin), Yoghurt [Water, Hulled <strong>Soya</strong> Beans (15.7%), Sugar, Stabiliser (Pectins), Calcium (Tri-calcium Citrate), Acidity Regulators (Sodium Citrates, Citric Acid), Sea Salt, Natural Flavouring, Antioxidants (Tocopherol-rich Extract, Fatty Acid Esters of Ascorbic Acid), Vitamins B6, B12, D2, Live Cultures (S. thermophilus, L. bulgaricus)], Pomegranate Arils, Black Tahini (Black <strong>Sesame</strong> Seeds), Bramley Apple Sauce (Bramley Apple (70%), Sugar, Water, Gelling Agents: Pectins; Antioxidant: Ascorbic Acid; Preservative: Potassium Sorbate; Acidity Regulator: Citric Acid), Black Cocoa Powder, Black <strong>Sesame</strong> Seeds, Cocoa Powder (Cocoa Powder, Acidity Regulators: Potassium Carbonates, Potassium Hydroxide), Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Cream of Tartar, Raising Agents (Disodium Diphosphate, Sodium Hydrogen Carbonate), Rice Flour, Salt.</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <!-- ============ MORNING ROAST ============ -->
+  <article class="item" id="morning-roast">
+    <img src="images/cookies/morning-roast-photo.webp" alt="Morning Roast cookie" loading="lazy">
+    <div>
+      <h2>Morning Roast</h2>
+      <p class="contains">Contains: wheat, oats, almonds, sulphites, soya</p>
+      <p class="ing">Vegan Butter [Plant Oils (Sunflower, Rapeseed), Coconut Oil, Water, Sea Salt, Faba Bean Preparation, Emulsifier (Sunflower Lecithin), Natural Flavouring, Colour (Carotenes)], <strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), Brown Sugar, <strong>Oats</strong>, Apple, Espresso Apple-honey (Apple Juice, Sugar, Coffee Beans, Glucose Syrup, Vanilla Essence, Citric Acid), Salted <strong>Almonds</strong> (<strong>Almonds</strong>, Rapeseed Oil, Salt), Dried Apricots (Apricots (99%), Preservatives: Potassium Sorbate, <strong>Sulphur Dioxide (Sulphites)</strong>), Raising Agents (Disodium Diphosphate, Sodium Hydrogen Carbonate), Rice Flour, Cinnamon, Salt.</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <!-- ============ GBF ============ -->
+  <article class="item" id="gbf">
+    <img src="images/cookies/gbf-photo.webp" alt="GBF cookie" loading="lazy">
+    <div>
+      <h2>GBF</h2>
+      <p class="contains">Contains: wheat, spelt, barley, soya</p>
+      <p class="ing">Sugar, <strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), <strong>Spelt</strong> Flour (<strong>Spelt Wheat</strong>), Vegan Butter [Plant Oils (Sunflower, Rapeseed), Coconut Oil, Water, Sea Salt, Faba Bean Preparation, Emulsifier (Sunflower Lecithin), Natural Flavouring, Colour (Carotenes)], Margarine [Vegetable Oils (Rapeseed, Palm, Sunflower), Water, Salt, Emulsifiers (Lecithin, Mono and Diglycerides of Fatty Acids), Acid (Lactic Acid), Colours (Beta-Carotene), Vitamin A and D, Flavourings], Vegan Milk Drops (Shea Oil, Sugar, Dehydrated Rice Extract, Pumpkin Seed Flour, Carob Proteins, Grape Seed Flour, Roasted Carob Pulp Flour (1.7%), Natural Flavours, Emulsifier: Sunflower Lecithin), Dark Chocolate (Sugar, Cocoa Mass, Cocoa Butter, <strong>Soya</strong> Lecithin), <strong>Barley</strong> Malt Extract, <strong>Soya</strong> Flour, Bramley Apple Sauce (Bramley Apple (70%), Sugar, Water, Gelling Agents: Pectins; Antioxidant: Ascorbic Acid; Preservative: Potassium Sorbate; Acidity Regulator: Citric Acid), Yoghurt [Water, Hulled <strong>Soya</strong> Beans (15.7%), Sugar, Stabiliser (Pectins), Calcium (Tri-calcium Citrate), Acidity Regulators (Sodium Citrates, Citric Acid), Sea Salt, Natural Flavouring, Antioxidants (Tocopherol-rich Extract, Fatty Acid Esters of Ascorbic Acid), Vitamins B6, B12, D2, Live Cultures (S. thermophilus, L. bulgaricus)], Toasted Milk Sugar [Dairy-free Milk Powder (Glucose Syrup, Vegetable Fat (Coconut), Emulsifier: E472e, Stabiliser: E340, Anticaking Agent: E551), Sugar], Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Salt, Raising Agent (Sodium Hydrogen Carbonate).</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <!-- ============ GOLDEN HOUR ============ -->
+  <article class="item" id="golden-hour">
+    <img src="images/cookies/golden-hour-photo.webp" alt="Golden Hour cookie" loading="lazy">
+    <div>
+      <h2>Golden Hour</h2>
+      <p class="contains">Contains: wheat, spelt, barley, pecans, soya</p>
+      <p class="ing">Sugar, <strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), <strong>Spelt</strong> Flour (<strong>Spelt Wheat</strong>), Banoffee Jam (Bananas, Sugar, Lemon Juice), Banana Miso Caramel [Sugar, Banana, Plant Cream (Lentil Protein Preparation (Water, 1.1% Lentil Protein), 31% Vegetable Oils (Palm, Rapeseed), Sugar, Modified Corn Starch, Emulsifiers (Sunflower Lecithin, Sugar Esters of Fatty Acids, Mono and Diglycerides of Fatty Acids), Stabilisers (Guar Gum, Locust Bean Gum), Natural Flavours, Salt, Colour (Carotene)), Miso Paste (Water, <strong>Soybeans</strong> (34%), Rice, Salt), Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Salt], Vegan Butter [Plant Oils (Sunflower, Rapeseed), Coconut Oil, Water, Sea Salt, Faba Bean Preparation, Emulsifier (Sunflower Lecithin), Natural Flavouring, Colour (Carotenes)], Margarine [Vegetable Oils (Rapeseed, Palm, Sunflower), Water, Salt, Emulsifiers (Lecithin, Mono and Diglycerides of Fatty Acids), Acid (Lactic Acid), Colours (Beta-Carotene), Vitamin A and D, Flavourings], Vegan Milk Drops (Shea Oil, Sugar, Dehydrated Rice Extract, Pumpkin Seed Flour, Carob Proteins, Grape Seed Flour, Roasted Carob Pulp Flour (1.7%), Natural Flavours, Emulsifier: Sunflower Lecithin), <strong>Barley</strong> Malt Extract, <strong>Soya</strong> Flour, Bramley Apple Sauce (Bramley Apple (70%), Sugar, Water, Gelling Agents: Pectins; Antioxidant: Ascorbic Acid; Preservative: Potassium Sorbate; Acidity Regulator: Citric Acid), Yoghurt [Water, Hulled <strong>Soya</strong> Beans (15.7%), Sugar, Stabiliser (Pectins), Calcium (Tri-calcium Citrate), Acidity Regulators (Sodium Citrates, Citric Acid), Sea Salt, Natural Flavouring, Antioxidants (Tocopherol-rich Extract, Fatty Acid Esters of Ascorbic Acid), Vitamins B6, B12, D2, Live Cultures (S. thermophilus, L. bulgaricus)], <strong>Pecan</strong> Nuts, Caramelised <strong>Pecans</strong> (<strong>Pecans</strong>, Brown Sugar), Toasted Milk Sugar [Dairy-free Milk Powder (Glucose Syrup, Vegetable Fat (Coconut), Emulsifier: E472e, Stabiliser: E340, Anticaking Agent: E551), Sugar], Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Salt, Raising Agent (Sodium Hydrogen Carbonate).</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <!-- ============ LAVENDER SUNSET ============ -->
+  <article class="item" id="lavender-sunset">
+    <img src="images/cookies/lavender-sunset-photo.webp" alt="Lavender Sunset cookie" loading="lazy">
+    <div>
+      <h2>Lavender Sunset</h2>
+      <p class="contains">Contains: wheat</p>
+      <p class="ing"><strong>Wheat</strong> flour (<strong>Wheat</strong> Flour, Calcium Carbonate, Folic Acid, Iron, Niacin, Thiamin), Sugar, Vegan Butter [Plant Oils (Sunflower, Rapeseed), Coconut Oil, Water, Sea Salt, Faba Bean Preparation, Emulsifier (Sunflower Lecithin), Natural Flavouring, Colour (Carotenes)], Peach Jam (Sugar, Peaches, Clarified Refined Grape Juice from Concentrate, Citric Acid), Strawberry Jam (100% Strawberries), Margarine [Vegetable Oils (Rapeseed, Palm, Sunflower), Water, Salt, Emulsifiers (Lecithin, Mono and Diglycerides of Fatty Acids), Acid (Lactic Acid), Colours (Beta-Carotene), Vitamin A and D, Flavourings], Lavender Sugar (Sugar, Dried Lavender Flowers), Vanilla Essence (Water, Propylene Glycol, Colour: Plain Caramel, Flavourings), Rice Flour, Raising Agent (Sodium Hydrogen Carbonate), Salt.</p>
+      <a class="back" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <span class="handle">@szuga.bakes</span>
+  <span class="info">alice@szuga.co.uk · London · <a href="privacy.html">Privacy</a></span>
+</footer>
+
+</body>
+</html>
