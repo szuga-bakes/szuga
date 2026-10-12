@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you · Szuga</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f2c3f;--pink:#f78fd3;--yellow:#f9db53;--cream:#fff7ea;--ink:#3d5766;--muted:#5c6b76;--hover:#c2418f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);font-family:Karla,system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--navy)}
+  a:hover{color:var(--hover)}
+
+  .marquee{background:var(--pink);overflow:hidden;padding:10px 0;border-bottom:3px solid var(--navy)}
+  .marquee-track{display:flex;gap:26px;white-space:nowrap;width:max-content;font:700 13px 'Space Mono',monospace;color:var(--navy);animation:szuga-marquee 30s linear infinite}
+  @keyframes szuga-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:56px 24px 72px;text-align:center}
+  .logo{width:200px;height:200px;max-width:60vw;max-height:60vw;border-radius:50%;border:4px solid var(--navy);box-shadow:10px 10px 0 var(--yellow);display:block}
+  .tag{background:var(--yellow);border:2.5px solid var(--navy);border-radius:30px;padding:7px 20px;font:700 12px 'Space Mono',monospace;color:var(--navy);transform:rotate(-2deg);letter-spacing:.06em}
+  h1{margin:0;font:800 clamp(40px,7vw,64px)/1.02 'Baloo 2',sans-serif;color:var(--navy);max-width:16ch;text-wrap:balance}
+  .lede{margin:0;max-width:44ch;font:400 18px/1.6 Karla,sans-serif;text-wrap:pretty}
+
+  .dispatch{display:flex;flex-wrap:wrap;justify-content:center;border:3px solid var(--navy);border-radius:20px;background:#fff;overflow:hidden}
+  .dispatch>div{padding:14px 26px}
+  .dispatch>div+div{border-left:3px solid var(--navy)}
+  .dispatch .k{font:700 11px 'Space Mono',monospace;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .dispatch .v{font:800 20px 'Baloo 2',sans-serif;color:var(--navy)}
+  @media (max-width:520px){.dispatch{flex-direction:column;width:100%}.dispatch>div+div{border-left:0;border-top:3px solid var(--navy)}}
+
+  .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+  .btn{display:flex;align-items:center;gap:10px;border:2.5px solid var(--navy);border-radius:34px;padding:12px 26px;font:800 18px 'Baloo 2',sans-serif;color:var(--navy);text-decoration:none}
+  .btn:hover{color:var(--navy);box-shadow:4px 4px 0 var(--navy)}
+  .btn:focus-visible{outline:3px dashed var(--hover);outline-offset:4px}
+  .btn.home{background:var(--navy);color:var(--yellow)}
+  .btn.home:hover{color:var(--pink);box-shadow:4px 4px 0 var(--pink)}
+  .btn.mail{background:var(--pink);transform:rotate(-1.5deg)}
+  .btn.ig{background:var(--yellow);transform:rotate(1.5deg)}
+  .btn .ic{width:26px;height:26px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font:700 10px 'Space Mono',monospace}
+  .btn.mail .ic{color:var(--pink)}
+  .btn.ig .ic{color:var(--yellow)}
+  .small{margin:0;font:400 14px/1.5 Karla,sans-serif;color:var(--muted);max-width:44ch}
+
+  footer{background:var(--navy);padding:22px 24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+  footer .handle{font:700 15px 'Baloo 2',sans-serif;color:var(--pink)}
+  footer .info{font:400 12px 'Space Mono',monospace;color:#9fb3c0}
+  footer .info a{color:#9fb3c0}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>THANK YOU</span><span>★</span><span>ORDER CONFIRMED</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>THANK YOU</span><span>★</span><span>ORDER CONFIRMED</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>THANK YOU</span><span>★</span><span>ORDER CONFIRMED</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+    <span>THANK YOU</span><span>★</span><span>ORDER CONFIRMED</span><span>★</span><span>BAKED IN SOUTH LONDON</span><span>★</span>
+  </div>
+</div>
+
+<main>
+  <a href="index.html" aria-label="Szuga home"><img class="logo" src="uploads/SzugaLogo.png" alt="Szuga"></a>
+
+  <div class="tag">ORDER CONFIRMED</div>
+
+  <h1>Thank you! Your box is on its way.</h1>
+
+  <!-- The dates below are filled in automatically from the "Posted out" date on menu.html -->
+  <p class="lede" id="shipping">It will ship out on our next posting day by Royal Mail Tracked 24 and should arrive the day after.</p>
+
+  <div class="dispatch" id="dates" hidden>
+    <div><div class="k">Posted out</div><div class="v" id="postDay"></div></div>
+    <div><div class="k">Should arrive</div><div class="v" id="arriveDay"></div></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn home" href="index.html">Back to home</a>
+    <a class="btn mail" href="mailto:alice@szuga.co.uk"><span class="ic">@</span>alice@szuga.co.uk</a>
+    <a class="btn ig" href="https://www.instagram.com/szuga.bakes" target="_blank" rel="noopener"><span class="ic">IG</span>@szuga.bakes</a>
+  </div>
+
+  <p class="small">You'll get a confirmation email shortly, and tracking details once your box is posted. Any questions, just get in touch.</p>
+</main>
+
+<footer>
+  <span class="handle">@szuga.bakes</span>
+  <span class="info">alice@szuga.co.uk · London · <a href="privacy.html">Privacy</a></span>
+</footer>
+
+<script>
+(function () {
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function longDate(d) { return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
+  function shortDate(d) { return DAYS[d.getDay()].slice(0, 3).toUpperCase() + ' ' + ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2); }
+
+  // Turns "FRI 30/10" into a real date, picking the year that makes sense
+  function parsePostDate(text) {
+    var m = text.match(/(\d{1,2})\s*\/\s*(\d{1,2})/);
+    if (!m) return null;
+    var day = +m[1], month = +m[2] - 1;
+    var today = new Date();
+    var d = new Date(today.getFullYear(), month, day);
+    // If that date is more than two months ago, it must mean next year (e.g. a January date seen in December)
+    if (today - d > 60 * 24 * 60 * 60 * 1000) d.setFullYear(d.getFullYear() + 1);
+    return d;
+  }
+
+  fetch('menu.html', { cache: 'no-store' })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var label = Array.prototype.find.call(doc.querySelectorAll('.dispatch .k'), function (el) {
+        return el.textContent.trim().toLowerCase() === 'posted out';
+      });
+      if (!label || !label.nextElementSibling) return;
+      var post = parsePostDate(label.nextElementSibling.textContent);
+      if (!post) return;
+      var arrive = new Date(post); arrive.setDate(post.getDate() + 1);
+
+      document.getElementById('shipping').textContent =
+        'It will ship out on ' + longDate(post) + ' by Royal Mail Tracked 24 and should arrive on ' + longDate(arrive) + '.';
+      document.getElementById('postDay').textContent = shortDate(post);
+      document.getElementById('arriveDay').textContent = shortDate(arrive);
+      document.getElementById('dates').hidden = false;
+    })
+    .catch(function () { /* keep the general wording if the menu can't be read */ });
+})();
+</script>
+</body>
+</html>
