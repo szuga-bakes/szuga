@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Szuga</title>
+<title>Szuga · vegan micro bakery</title>
+<meta name="description" content="Szuga is a teeny-tiny vegan micro bakery in South London, making cakes, cookies and sweet treats to order, with UK-wide delivery.">
+
+<!-- How the link looks when shared on social media and messaging apps -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://szuga.co.uk/">
+<meta property="og:title" content="Szuga · vegan micro bakery">
+<meta property="og:description" content="Cakes, cookies and sweet treats, baked to order in South London. Always plant-based.">
+<meta property="og:image" content="https://szuga.co.uk/uploads/SzugaLogo.png">
+<meta name="twitter:card" content="summary">
+
+<!-- Little icon in the browser tab -->
+<link rel="icon" type="image/png" href="uploads/SzugaLogo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   body{margin:0;background:#fff7ea;font-family:Karla,system-ui,sans-serif}
   a{color:#0f2c3f}
@@ -14,6 +27,20 @@
   @keyframes szuga-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   footer .links a{color:#9fb3c0;font-weight:400}
   footer .links a:hover{color:#f78fd3}
+  .cta{display:inline-flex;align-items:center;justify-content:center;border:3px solid #0f2c3f;border-radius:16px;padding:15px 30px;font:800 20px 'Baloo 2',sans-serif;text-decoration:none;box-shadow:5px 5px 0 #0f2c3f;transition:transform .12s,box-shadow .12s}
+  .cta:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 #0f2c3f}
+  .cta-main{background:#0f2c3f;color:#f9db53;box-shadow:5px 5px 0 #f78fd3}
+  .cta-main:hover{color:#f9db53;box-shadow:3px 3px 0 #f78fd3}
+  .cta-alt{background:#fff;color:#0f2c3f}
+  .cta-alt:hover{color:#0f2c3f}
+  .ticket{position:relative;max-width:460px;width:100%;box-sizing:border-box;margin-top:16px;background:#fff;border:3px solid #0f2c3f;border-radius:20px;padding:34px 24px 20px;text-align:left}
+  .ticket-tag{position:absolute;top:-17px;left:50%;transform:translateX(-50%) rotate(-2deg);background:#f9db53;border:2.5px solid #0f2c3f;border-radius:30px;padding:6px 18px;font:700 12px 'Space Mono',monospace;color:#0f2c3f;letter-spacing:.06em;white-space:nowrap}
+  .ticket ol{list-style:none;margin:0;padding:0}
+  .ticket li{display:flex;gap:16px;align-items:baseline;padding:11px 0;border-bottom:2px dashed #c9d3d9}
+  .ticket li:last-child{border-bottom:none}
+  .ticket .when{flex:0 0 88px;font:700 13px 'Space Mono',monospace;color:#c2418f}
+  .ticket .what{font:500 16px/1.4 Karla,sans-serif;color:#0f2c3f}
+  .ticket-foot{margin-top:10px;padding-top:14px;border-top:3px solid #0f2c3f;font:400 13px/1.55 Karla,sans-serif;color:#5c6b76;text-align:center}
 </style>
 </head>
 <body>
@@ -21,18 +48,37 @@
 <div style="min-height:100vh;background:#fff7ea;display:flex;flex-direction:column">
   <div style="background:#f78fd3;overflow:hidden;padding:10px 0;border-bottom:3px solid #0f2c3f">
     <div style="display:flex;gap:26px;white-space:nowrap;width:max-content;font:700 13px 'Space Mono',monospace;color:#0f2c3f;animation:szuga-marquee 26s linear infinite">
-      <span>SITE UNDER CONSTRUCTION</span><span>★</span><span>ORDERS OPEN 17 OCTOBER</span><span>★</span><span>LIMITED SUPPLY</span><span>★</span><span>SITE UNDER CONSTRUCTION</span><span>★</span><span>ORDERS OPEN 17 OCTOBER</span><span>★</span><span>LIMITED SUPPLY</span><span>★</span><span>SITE UNDER CONSTRUCTION</span><span>★</span><span>ORDERS OPEN 17 OCTOBER</span><span>★</span><span>LIMITED SUPPLY</span><span>★</span><span>SITE UNDER CONSTRUCTION</span><span>★</span><span>ORDERS OPEN 17 OCTOBER</span><span>★</span><span>LIMITED SUPPLY</span><span>★</span>
+      <span>COOKIE BOXES FOR DELIVERY</span><span>★</span><span>VEGAN MICRO BAKERY</span><span>★</span><span>COOKIE ORDERS CLOSE FRIDAY 23/10</span><span>★</span><span>COOKIE BOXES FOR DELIVERY</span><span>★</span><span>VEGAN MICRO BAKERY</span><span>★</span><span>COOKIE ORDERS CLOSE FRIDAY 23/10</span><span>★</span><span>COOKIE BOXES FOR DELIVERY</span><span>★</span><span>VEGAN MICRO BAKERY</span><span>★</span><span>COOKIE ORDERS CLOSE FRIDAY 23/10</span><span>★</span><span>COOKIE BOXES FOR DELIVERY</span><span>★</span><span>VEGAN MICRO BAKERY</span><span>★</span><span>COOKIE ORDERS CLOSE FRIDAY 23/10</span><span>★</span>
     </div>
   </div>
 
   <main style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:60px 32px 72px;text-align:center">
     <img src="uploads/SzugaLogo.png" alt="Szuga" style="width:260px;height:260px;max-width:70vw;border-radius:50%;border:4px solid #0f2c3f;box-shadow:10px 10px 0 #f9db53;display:block">
 
-    <div style="background:#f9db53;border:2.5px solid #0f2c3f;border-radius:30px;padding:8px 22px;font:700 12px 'Space Mono',monospace;color:#0f2c3f;transform:rotate(-2deg);letter-spacing:.06em">BAKING...</div>
+    <div style="background:#f9db53;border:2.5px solid #0f2c3f;border-radius:30px;padding:8px 22px;font:700 12px 'Space Mono',monospace;color:#0f2c3f;transform:rotate(-2deg);letter-spacing:.06em">Taste the moment</div>
 
-    <h1 style="margin:6px 0 0;font:800 clamp(38px,6vw,62px)/1.02 'Baloo 2',sans-serif;color:#0f2c3f;max-width:16ch;text-wrap:balance">Our website is still in the oven.</h1>
+    <h1 style="margin:6px 0 0;font:800 clamp(38px,6vw,62px)/1.02 'Baloo 2',sans-serif;color:#0f2c3f;max-width:16ch;text-wrap:balance">Want Cookies? We have cookies!</h1>
 
-    <div style="margin:0;max-width:44ch;font:400 18px/1.6 Karla,sans-serif;color:#3d5766;text-wrap:pretty">Szuga is a&nbsp;<span style="text-wrap-mode: initial;">teeny-tiny micro bakery, run out of my little South London flat, making cakes, cookies and other sweet treats to order.</span><p>There will be a small menu of favourites, plus a new limited-edition bake every month. All homemade, always plant-based, plus the secret ingredient: sleep deprivation.</p>(By the way, it's pronounced shoo-gah.)</div>
+    <!-- Main buttons: shop and menu -->
+    <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center">
+      <a class="cta cta-main" href="https://shop.szuga.co.uk">Order now</a>
+      <a class="cta cta-alt" href="menu.html">See the menu</a>
+    </div>
+
+    <div style="margin:0;max-width:44ch;font:400 18px/1.6 Karla,sans-serif;color:#3d5766;text-wrap:pretty">Szuga is a&nbsp;<span style="text-wrap-mode: initial;"> teeny-tiny micro bakery, run out of my little South London flat and delivering cookie boxes UK-wide, plus custom cakes to order.</span><p>My 24/7 cookie box contains six indulgent cookies with unique flavours, each lovingly crafted to invoke a moment, a memory, a feeling. All homemade, always plant-based, plus the secret ingredient: sleep deprivation.</p>(By the way, it's pronounced shoo-gah.)</div>
+
+    <!-- How ordering works: order-ticket style -->
+    <div class="ticket">
+      <div class="ticket-tag">HOW ORDERING WORKS</div>
+      <ol>
+        <li><span class="when">SAT 12PM</span><span class="what">Orders open for the next batch</span></li>
+        <li><span class="when">FRI 23:59</span><span class="what">Orders close</span></li>
+        <li><span class="when">MON</span><span class="what">Last day to cancel for a full refund</span></li>
+        <li><span class="when">NEXT FRI</span><span class="what">Bakes dispatched, or collect before 3pm</span></li>
+        <li><span class="when">SAT</span><span class="what">Arrives by Royal Mail Tracked 24</span></li>
+      </ol>
+      <div class="ticket-foot">UK-wide delivery from £4.80, or free collection.<br>Custom cakes need 3 weeks' notice: <a href="mailto:alice@szuga.co.uk">alice@szuga.co.uk</a><br>Always vegan. My kitchen handles gluten, nuts, sesame, soya and sulphites. Full allergen info is on the menu.</div>
+    </div>
 
     <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:6px">
       <a href="https://www.tiktok.com/@szuga.bakes" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:#f78fd3;border:2.5px solid #0f2c3f;border-radius:34px;padding:13px 28px;font:800 18px 'Baloo 2',sans-serif;color:#0f2c3f;text-decoration:none;transform:rotate(-1.5deg)"><span style="width:26px;height:26px;border-radius:8px;background:#0f2c3f;color:#f78fd3;display:flex;align-items:center;justify-content:center;font:700 10px 'Space Mono',monospace">TT</span>@szuga.bakes</a>
@@ -43,7 +89,7 @@
       <div style="font:700 20px 'Baloo 2',sans-serif;color:#0f2c3f">Know when we open</div>
       <div style="font:400 14px/1.5 Karla,sans-serif;color:#5c6b76">Be first to hear when orders open, plus the odd email about new bakes. Unsubscribe any time.</div>
       <form action="https://docs.google.com/forms/d/e/1FAIpQLSd01ixaYqfDMaKxWVE96qkWBv0SZZ3ttSBSglsP-FTaqnTukw/formResponse" method="post" target="szuga_hidden_iframe" onsubmit="document.getElementById('szuga-signup-form-inner').style.display='none';document.getElementById('szuga-signup-thanks').style.display='block';" style="display:flex;gap:10px;width:100%;flex-wrap:wrap" id="szuga-signup-form-inner">
-        <input type="email" name="entry.2146059796" required placeholder="you@email.com" style="flex:1;min-width:180px;border:2.5px solid #0f2c3f;border-radius:12px;padding:12px 14px;font:400 15px Karla,sans-serif;color:#0f2c3f;background:#fff7ea;outline:none">
+        <input type="email" name="entry.2146059796" required placeholder="you@email.com" aria-label="Your email address" style="flex:1;min-width:180px;border:2.5px solid #0f2c3f;border-radius:12px;padding:12px 14px;font:400 15px Karla,sans-serif;color:#0f2c3f;background:#fff7ea;outline:none">
         <button type="submit" style="border:2.5px solid #0f2c3f;border-radius:12px;background:#0f2c3f;color:#f9db53;padding:12px 22px;font:800 16px 'Baloo 2',sans-serif;cursor:pointer">Notify me</button>
       </form>
       <div id="szuga-signup-thanks" style="display:none;font:700 16px 'Baloo 2',sans-serif;color:#0f2c3f">Thanks! We'll email you when we open. 🎂</div>
@@ -54,8 +100,8 @@
 
   <footer style="background:#0f2c3f;padding:22px 32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center">
     <span style="font:700 15px 'Baloo 2',sans-serif;color:#f78fd3">@szuga.bakes</span>
-<span style="font:400 12px 'Space Mono',monospace;color:#9fb3c0">alice@szuga.co.uk · London</span>
-<div style="width:100%;text-align:center;font:400 12px 'Space Mono',monospace;color:#9fb3c0"><a href="privacy.html" style="color:#9fb3c0">Privacy</a> · <a href="terms.html" style="color:#9fb3c0">Terms</a></div>
+    <span style="font:400 12px 'Space Mono',monospace;color:#9fb3c0">alice@szuga.co.uk · London</span>
+    <div style="width:100%;text-align:center;font:400 12px 'Space Mono',monospace;color:#9fb3c0"><a href="privacy.html" style="color:#9fb3c0">Privacy</a> · <a href="terms.html" style="color:#9fb3c0">Terms</a></div>
   </footer>
 </div>
 
