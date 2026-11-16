@@ -27,14 +27,30 @@
   .logo{width:200px;height:200px;max-width:60vw;max-height:60vw;border-radius:50%;border:4px solid var(--navy);box-shadow:10px 10px 0 var(--yellow);display:block}
   .tag{background:var(--yellow);border:2.5px solid var(--navy);border-radius:30px;padding:7px 20px;font:700 12px 'Space Mono',monospace;color:var(--navy);transform:rotate(-2deg);letter-spacing:.06em}
   h1{margin:0;font:800 clamp(40px,7vw,64px)/1.02 'Baloo 2',sans-serif;color:var(--navy);max-width:16ch;text-wrap:balance}
-  .lede{margin:0;max-width:44ch;font:400 18px/1.6 Karla,sans-serif;text-wrap:pretty}
+  .lede{margin:0;max-width:46ch;font:400 18px/1.6 Karla,sans-serif;text-wrap:pretty}
 
-  .dispatch{display:flex;flex-wrap:wrap;justify-content:center;border:3px solid var(--navy);border-radius:20px;background:#fff;overflow:hidden}
-  .dispatch>div{padding:14px 26px}
-  .dispatch>div+div{border-left:3px solid var(--navy)}
-  .dispatch .k{font:700 11px 'Space Mono',monospace;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
-  .dispatch .v{font:800 20px 'Baloo 2',sans-serif;color:var(--navy)}
-  @media (max-width:520px){.dispatch{flex-direction:column;width:100%}.dispatch>div+div{border-left:0;border-top:3px solid var(--navy)}}
+  /* Shipping table */
+  .ship-wrap{width:100%;max-width:820px;border:3px solid var(--navy);border-radius:20px;background:#fff;overflow:hidden;box-shadow:8px 8px 0 var(--pink)}
+  .ship{width:100%;border-collapse:collapse;text-align:left}
+  .ship th,.ship td{padding:16px 20px;vertical-align:top}
+  .ship thead th{background:var(--navy);color:var(--yellow);font:700 11px 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+  .ship tbody tr+tr th,.ship tbody tr+tr td{border-top:3px solid var(--navy)}
+  .ship tbody th{font:800 19px/1.2 'Baloo 2',sans-serif;color:var(--navy)}
+  .ship tbody th small{display:block;margin-top:4px;font:700 11px 'Space Mono',monospace;letter-spacing:.04em;color:var(--hover)}
+  .ship td{font:500 16px/1.4 Karla,sans-serif;color:var(--ink)}
+  .ship td.date{font:800 18px/1.2 'Baloo 2',sans-serif;color:var(--navy);white-space:nowrap}
+
+  @media (max-width:640px){
+    .ship thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    .ship,.ship tbody,.ship tr,.ship th,.ship td{display:block;width:100%}
+    .ship tbody tr{padding:16px 18px}
+    .ship tbody tr+tr{border-top:3px solid var(--navy)}
+    .ship tbody tr+tr th,.ship tbody tr+tr td{border-top:0}
+    .ship th,.ship td{padding:4px 0}
+    .ship tbody th{padding-bottom:10px}
+    .ship td{display:flex;justify-content:space-between;gap:16px;text-align:right}
+    .ship td::before{content:attr(data-label);font:700 11px 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding-top:4px}
+  }
 
   .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:4px}
   .btn{display:flex;align-items:center;gap:10px;border:2.5px solid var(--navy);border-radius:34px;padding:12px 26px;font:800 18px 'Baloo 2',sans-serif;color:var(--navy);text-decoration:none}
@@ -47,7 +63,7 @@
   .btn .ic{width:26px;height:26px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font:700 10px 'Space Mono',monospace}
   .btn.mail .ic{color:var(--pink)}
   .btn.ig .ic{color:var(--yellow)}
-  .small{margin:0;font:400 14px/1.5 Karla,sans-serif;color:var(--muted);max-width:44ch}
+  .small{margin:0;font:400 14px/1.5 Karla,sans-serif;color:var(--muted);max-width:46ch}
 
   footer{background:var(--navy);padding:22px 24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
   footer .handle{font:700 15px 'Baloo 2',sans-serif;color:var(--pink)}
@@ -73,14 +89,42 @@
 
   <div class="tag">ORDER CONFIRMED</div>
 
-  <h1>Thank you! Your box is on its way.</h1>
+  <h1>Thank you! Your order is in.</h1>
 
-  <!-- The dates below are filled in automatically from the "Posted out" date on menu.html -->
-  <p class="lede" id="shipping">It will ship out on our next posting day by Royal Mail Tracked 24 and should arrive the day after.</p>
+  <p class="lede">Find the box you ordered below to see when it'll be posted and when it should arrive. Your confirmation email lists what you ordered.</p>
 
-  <div class="dispatch" id="dates" hidden>
-    <div><div class="k">Posted out</div><div class="v" id="postDay"></div></div>
-    <div><div class="k">Should arrive</div><div class="v" id="arriveDay"></div></div>
+  <div class="ship-wrap">
+    <table class="ship">
+      <thead>
+        <tr>
+          <th scope="col">Your order</th>
+          <th scope="col">Posted out</th>
+          <th scope="col">Delivery</th>
+          <th scope="col">Should arrive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">November orders</th>
+          <!-- These two dates are filled in automatically from the "Posted out" date on menu.html -->
+          <td class="date" data-label="Posted out" id="novPost">Our next posting day</td>
+          <td data-label="Delivery">Royal Mail Tracked 24</td>
+          <td class="date" data-label="Should arrive" id="novArrive">The day after</td>
+        </tr>
+        <tr>
+          <th scope="row">Christmas Cookie Box</th>
+          <td class="date" data-label="Posted out">Tue 15 December</td>
+          <td data-label="Delivery">Royal Mail Tracked 24</td>
+          <td class="date" data-label="Should arrive">Wed 16 December</td>
+        </tr>
+        <tr>
+          <th scope="row">Christmas Cookie Box<small>DELIVERY: 23/12</small></th>
+          <td class="date" data-label="Posted out">Tue 22 December</td>
+          <td data-label="Delivery">DHL Next Day</td>
+          <td class="date" data-label="Should arrive">Wed 23 December</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="actions">
@@ -94,7 +138,7 @@
 
 <footer>
   <span class="handle">@szuga.bakes</span>
-    <span class="links"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+  <span class="links"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
   <span class="info">alice@szuga.co.uk · London</span>
 </footer>
 
@@ -103,8 +147,8 @@
   var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-  function longDate(d) { return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
-  function shortDate(d) { return DAYS[d.getDay()].slice(0, 3).toUpperCase() + ' ' + ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2); }
+  // e.g. "Fri 30 October"
+  function niceDate(d) { return DAYS[d.getDay()].slice(0, 3) + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
 
   // Turns "FRI 30/10" into a real date, picking the year that makes sense
   function parsePostDate(text) {
@@ -118,6 +162,7 @@
     return d;
   }
 
+  // Fill in the November row from the "Posted out" date on menu.html
   fetch('menu.html', { cache: 'no-store' })
     .then(function (r) { return r.text(); })
     .then(function (html) {
@@ -130,11 +175,8 @@
       if (!post) return;
       var arrive = new Date(post); arrive.setDate(post.getDate() + 1);
 
-      document.getElementById('shipping').textContent =
-        'It will ship out on ' + longDate(post) + ' by Royal Mail Tracked 24 and should arrive on ' + longDate(arrive) + '.';
-      document.getElementById('postDay').textContent = shortDate(post);
-      document.getElementById('arriveDay').textContent = shortDate(arrive);
-      document.getElementById('dates').hidden = false;
+      document.getElementById('novPost').textContent = niceDate(post);
+      document.getElementById('novArrive').textContent = niceDate(arrive);
     })
     .catch(function () { /* keep the general wording if the menu can't be read */ });
 })();
